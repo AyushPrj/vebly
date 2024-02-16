@@ -1,7 +1,3 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
-#
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-# https://gist.github.com/alexng353/80f4457738b9f312f18ed6f5772ffeac
 name: Check NextJs build
 
 on:
