@@ -43,6 +43,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.next
-
+  lint:
+    runs-on: ubuntu-latest
+    steps:
       - name: Linting
         run: npm run lint
