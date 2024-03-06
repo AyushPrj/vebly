@@ -83,6 +83,54 @@
 
 					  </button>
 					</div>	
+					<div class="btn-group me-3 float-end" role="group" id="login" style="background-color: skyblue; color: white;>
+						<button class = "sign in" id = "loginButton"> Log In</button>
+					</div>
+					<script type="module">
+						// Import the functions you need from the SDKs you need
+						import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+						import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"; 
+					  
+						// Your web app's Firebase configuration
+						const firebaseConfig = {
+							apiKey: "AIzaSyAYy6XfWv-Z1XuMDz7nUna40Nivo82yZiU",
+  							authDomain: "senior-design-b694b.firebaseapp.com",
+							projectId: "senior-design-b694b",
+							storageBucket: "senior-design-b694b.appspot.com",
+							messagingSenderId: "979654049360",
+							appId: "1:979654049360:web:21ff1b56d11ac9ac70db55",
+							measurementId: "G-MD3TE65E2T"
+						};
+					  
+						// Initialize Firebase
+						const app = initializeApp(firebaseConfig);
+						const auth = getAuth(app);
+						const provider = new GoogleAuthProvider(app);
+					  
+						login.addEventListener('click', (e) => {
+						  signInWithPopup(auth, provider)
+						  .then((result) => {
+							// This gives you a Google Access Token. You can use it to access the Google API.
+							const credential = GoogleAuthProvider.credentialFromResult(result);
+							const token = credential.accessToken;
+							// The signed-in user info.
+							const user = result.user;
+							window.location.href = 'index.html';
+							// IdP data available using getAdditionalUserInfo(result)
+							// ...
+						  }).catch((error) => {
+							// Handle Errors here.
+							const errorCode = error.code;
+							const errorMessage = error.message;
+							// The email of the user's account used.
+							const email = error.customData.email;
+							// The AuthCredential type that was used.
+							const credential = GoogleAuthProvider.credentialFromError(error);
+							// ...
+							alert(errorMessage);
+						  });
+						});
+					  </script>
 
 
 					  <div class="float-end me-3">
