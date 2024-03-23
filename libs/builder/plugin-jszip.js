@@ -135,3 +135,105 @@ function () {
         console.log(error)
   })
 };
+
+Vvveb.Gui.getZipFile =
+function () {
+    let assets = [];
+    let zipContent; // This will store the zipped content
+
+    function addUrl(url, href, binary) {
+        assets.push({url, href, binary});
+    }
+
+    let html = Vvveb.Builder.frameHtml;
+
+    //stylesheets
+    $("link[href$='.css']", html).each(function(i, e) {
+        addUrl(e.href, e.getAttribute("href"), false);
+    });
+
+    //javascripts
+    $("script[src$='.js']", html).each(function(i, e) {
+        addUrl(e.src, e.getAttribute("src"), false);
+    });
+    
+    //images
+    $("img[src]", html).each(function(i, e) {
+        addUrl(e.src, e.getAttribute("src"), true);
+    });
+
+    let zip = new JSZip();
+    let promises = [];
+    
+    for (i in assets) {
+        let asset = assets[i];
+        let url = asset.url;
+        let href = asset.href;
+        let binary = asset.binary;
+        
+        let filename = href.substring(href.lastIndexOf('/')+1);
+        let path = href.substring(0, href.lastIndexOf('/')).replace(/\.\.\//g, "");
+        if (href.indexOf("://") > 0) {
+			//ignore path for external assets
+			path = "";
+		}
+
+        promises.push(new Promise((resolve, reject) => {
+
+          let request = new XMLHttpRequest();
+          request.open('GET', url);
+          if (binary) {
+            request.responseType = 'blob';
+          } else {
+            request.responseType = 'text';
+          }
+
+          request.onload = function() {
+            if (request.status === 200) {
+              resolve({url, href, filename, path, binary, data:request.response, status:request.status});
+            } else {
+              console.error('Error code:' + request.statusText);
+              resolve({status:request.status});
+            }
+          };
+
+          request.onerror = function() {
+              reject(Error('There was a network error.'));
+          };
+
+          try {
+			request.send();          
+		 } catch (error) {
+			  console.error(error);
+		 }
+     }));
+    }
+    
+    return Promise.all(promises).then((data) => {
+        let html = Vvveb.Builder.getHtml();
+        
+        for (i in data) {
+            let file = data[i];
+            let folder = zip;
+            
+            if (file.status == 200) {
+				if (file.path) {
+					file.path = file.path.replace(/^\//, "");
+					folder = zip.folder(file.path);
+				} else {
+					folder = zip;
+				}
+				
+				let url =  (file.path ? file.path + "/" : "") + file.filename.trim().replace(/^\//, "");
+				html = html.replace(file.href, url);
+								
+				folder.file(file.filename, file.data, {base64: file.binary});
+			}
+        }
+        
+        zip.file("index.html", html);
+        return zip.generateAsync({type:"blob"});
+    }).catch((error) => {
+        console.log(error)
+    })
+};
