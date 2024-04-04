@@ -83,31 +83,73 @@
 
 					  </button>
 					</div>	
-					<div class="btn-group me-3 float-end" role="group" id="login" style="background-color: skyblue; color: white;>
-						<button class = "sign in" id = "loginButton"> Log In</button>
+					<style>
+						#login {
+							display: inline-block; /* to align with other elements */
+							vertical-align: middle; /* to align with other elements */
+							border-radius: .25rem; /* matches the .btn class */
+							padding: .375rem .75rem; /* matches the .btn class */
+							font-size: 1rem; /* matches the .btn class */
+							line-height: 1.5; /* matches the .btn class */
+							text-align: center; /* matches the .btn class */
+							white-space: nowrap; /* matches the .btn class */
+							text-decoration: none; /* to remove underline */
+}
+					</style>
+					<div class="btn-group me-3 float-end" role="group" id="login">
+						<button class="btn btn-light" id="loginButton">Log In</button>
 					</div>
 					<script type="module">
 						// Import the functions you need from the SDKs you need
-						import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-						import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"; 
+						import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+						import { getAuth, signOut, onAuthStateChanged,  GoogleAuthProvider , signInWithPopup } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"; 
+						import { getDatabase, ref, runTransaction } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"; 
 					  
 						// Your web app's Firebase configuration
 						const firebaseConfig = {
-							apiKey: "AIzaSyAYy6XfWv-Z1XuMDz7nUna40Nivo82yZiU",
-  							authDomain: "senior-design-b694b.firebaseapp.com",
-							projectId: "senior-design-b694b",
-							storageBucket: "senior-design-b694b.appspot.com",
-							messagingSenderId: "979654049360",
-							appId: "1:979654049360:web:21ff1b56d11ac9ac70db55",
-							measurementId: "G-MD3TE65E2T"
+							apiKey: "AIzaSyCL467faqQsRxh99EnaOdtP6Cyy6O04lKw",
+							authDomain: "seniordesign-15.firebaseapp.com",
+							databaseURL: "https://seniordesign-15-default-rtdb.firebaseio.com",
+							projectId: "seniordesign-15",
+							storageBucket: "seniordesign-15.appspot.com",
+							messagingSenderId: "568701570094",
+							appId: "1:568701570094:web:645465efce0b3c97c063bf",
+							measurementId: "G-S2K4YXX5FE"
 						};
 					  
 						// Initialize Firebase
 						const app = initializeApp(firebaseConfig);
 						const auth = getAuth(app);
 						const provider = new GoogleAuthProvider(app);
-					  
+
+						// Get a reference to the database service
+						const database = getDatabase(app);
+
+						// // Write the token to the database
+
+						var login_state = false
+
+						onAuthStateChanged(auth, (user) => {
+						if (user) {
+							// User is signed in, see docs for a list of available properties
+							// https://firebase.google.com/docs/reference/js/auth.user
+							const uid = user.uid;
+							document.getElementById('loginButton').textContent = "Log Out" 
+							document.getElementById('deploy-btn').style.display = 'block'
+
+							login_state = true;
+							// ...
+						} else {
+							// User is signed out
+							document.getElementById('loginButton').innerHTML = "Log In" 
+							document.getElementById('deploy-btn').style.display = 'none'
+							login_state = false;
+						}
+						});
+						
 						login.addEventListener('click', (e) => {
+						 
+						if(login_state == false){
 						  signInWithPopup(auth, provider)
 						  .then((result) => {
 							// This gives you a Google Access Token. You can use it to access the Google API.
@@ -115,11 +157,51 @@
 							const token = credential.accessToken;
 							// The signed-in user info.
 							const user = result.user;
-							window.location.href = 'index.html';
+							// window.location.href = 'index.html';
+							// console.log(user);
+							// loginButton.innerHTML = "Log Out";
 							// IdP data available using getAdditionalUserInfo(result)
 							// ...
+							const userRef = ref(database, `users/${user.uid}`);
+
+							runTransaction(userRef, (currentValue) => {
+							if (currentValue && currentValue.token) {
+
+								console.log('running', currentValue.token)
+								
+								// Token already exists
+								return;
+							}
+							// console.log((user.metadata))
+							// console.log(Date.now())
+							// console.log((user.metadata.c÷reatedAt) - Date.now())
+							if (Date.now() - user.metadata.createdAt < 1000) {
+								console.log('new user')
+								const token = prompt('Enter your netlify token')
+								// Token does not exist, so set it
+								return {
+									token: token
+								};
+							} else {
+								console.log('old user')
+								return
+							}
+							
+
+							}, (error, committed, snapshot) => {
+								console.log('here')
+								if (error) {
+								console.error(error);
+								} else if (!committed) {
+								console.log('Transaction not committed.');
+								} else {
+								console.log('Token set successfully.');
+								}
+							});
+							
 						  }).catch((error) => {
 							// Handle Errors here.
+							console.log(error)
 							const errorCode = error.code;
 							const errorMessage = error.message;
 							// The email of the user's account used.
@@ -129,7 +211,18 @@
 							// ...
 							alert(errorMessage);
 						  });
+						} else {
+								signOut(auth).then(() => {
+									// loginButton.innerHTML = "Log In";
+									console.log('signed out')
+								}).catch((error) => {
+									// An error happened.
+								});
+						}
 						});
+
+
+						
 					  </script>
 
 
