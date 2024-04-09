@@ -2275,6 +2275,13 @@ Vvveb.Gui = {
 		}
 	},
 
+	redirectToNewTab: function(siteURL) {
+		console.log("Site is: ", siteURL);
+		setTimeout(function() {
+		  window.open(siteURL, '_blank');
+		}, 1000);
+	  },
+
 	waitForSiteCreation: async function(siteId, netlifyToken) {
 		console.log("HI FROM WAIT FOR SITE CREATION");
 		let siteReady = await Vvveb.Gui.checkSiteStatus(siteId, netlifyToken);
@@ -2288,11 +2295,11 @@ Vvveb.Gui = {
 	},
 
 	deployToNetlify: async function() {
-		const netlifyToken = prompt("Please enter your Netlify Token:");
+		const netlifyToken = 'nfp_2EADXHhtLkXMYa84Ehv3eYPQUK4QDkGKc191';
 		const siteIdPrompt = prompt("Please enter your Netlify Site ID (leave blank to create a new site):");
 
 		let siteId = siteIdPrompt;
-
+		let siteURL = '';
 		if (!siteId) {
 			try {
 				var siteRequestOptions = {
@@ -2307,15 +2314,15 @@ Vvveb.Gui = {
 				var statusCode = createSiteResponse.status;
 				console.log('Status code:', statusCode);
 				let responseData = await createSiteResponse.json();
+				siteURL = responseData.url;
 				siteId = responseData.site_id;
-				console.log('Site ID:', siteId);
+				console.log('Site URL:', siteURL);
 			} catch (error) {
 				console.error('An error occurred while creating a new site:', error);
 				return;
 			}
 		}
 		await Vvveb.Gui.waitForSiteCreation(siteId, netlifyToken);
-		console.log('Site ID2:', siteId);
 
 		// Read the zip file into a buffer
 		let zipBuffer = await Vvveb.Gui.getZipFile();
@@ -2334,17 +2341,17 @@ Vvveb.Gui = {
 			headers: myHeaders,
 			body: zipBuffer,
 			redirect: 'follow',
-			// mode: 'no-cors'
 		};
 
 		// Make the request
 		try {
 			let deployResponse = await fetch("https://api.netlify.com/api/v1/sites/" + siteId + "/deploys", deployRequestOptions);
-			let result = await deployResponse.text();
-			console.log(result);
+			let result = await deployResponse.json();
 		} catch (error) {
 			console.log('error', error);
 		}
+		
+		await Vvveb.Gui.redirectToNewTab(siteURL);
 	},
 
 	viewport : function () {
