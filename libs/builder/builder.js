@@ -835,7 +835,7 @@ Vvveb.Builder = {
 	 },
 	 
 	loadSectionGroups : function() {	
-
+		console.log("loadSectionGroups sections", Vvveb.Sections);
 		var sectionsList = $(".sections-list");
 		sectionsList.empty();
 		var item = {};
@@ -846,7 +846,7 @@ Vvveb.Builder = {
 			var list = $(this);
 			var type = this.dataset.type;
 
-			for (group in Vvveb.SectionsGroup)	
+			for (group in Vvveb.SectionsGroup)
 			{
 				list.append(
 				`<li class="header" data-section="${group}"  data-search="">
@@ -2341,6 +2341,7 @@ Vvveb.Gui = {
 			headers: myHeaders,
 			body: zipBuffer,
 			redirect: 'follow',
+			// mode: 'no-cors'
 		};
 
 		// Make the request
