@@ -2231,28 +2231,28 @@ Vvveb.Gui = {
 		});
 	},
 	
-	// download : function () {	
-	// 	console.log("HI FROM DOWNLOAD");
-	// 	filename = /[^\/]+$/.exec(Vvveb.Builder.iframe.src)[0];
-	// 	uriContent = "data:application/octet-stream,"  + encodeURIComponent(Vvveb.Builder.getHtml());
+	download : function () {	
+		console.log("HI FROM DOWNLOAD");
+		filename = /[^\/]+$/.exec(Vvveb.Builder.iframe.src)[0];
+		uriContent = "data:application/octet-stream,"  + encodeURIComponent(Vvveb.Builder.getHtml());
 
-	// 	var link = document.createElement('a');
-	// 	if ('download' in link)
-	// 	{
-	// 		link.dataset.download = filename;
-	// 		link.href = uriContent;
-	// 		link.target = "_blank";
+		var link = document.createElement('a');
+		if ('download' in link)
+		{
+			link.dataset.download = filename;
+			link.href = uriContent;
+			link.target = "_blank";
 			
-	// 		document.body.appendChild(link);
-	// 		result = link.click();
-	// 		document.body.removeChild(link);
-	// 		link.remove();
+			document.body.appendChild(link);
+			result = link.click();
+			document.body.removeChild(link);
+			link.remove();
 			
-	// 	} else
-	// 	{
-	// 		location.href = uriContent;
-	// 	}
-	// },
+		} else
+		{
+			location.href = uriContent;
+		}
+	},
 
 	checkSiteStatus: async function(siteId, netlifyToken) {
 		console.log("HI FROM CHECK SITE STATUS");
@@ -2288,7 +2288,7 @@ Vvveb.Gui = {
 	},
 
 	deployToNetlify: async function() {
-		const netlifyToken = 'nfp_T1qAnTGUmLbuY11C4qMDEYhqEVab6wy46d7a'; // Replace with your actual Netlify token
+		const netlifyToken = prompt("Please enter your Netlify Token:");
 		const siteIdPrompt = prompt("Please enter your Netlify Site ID (leave blank to create a new site):");
 
 		let siteId = siteIdPrompt;
@@ -2345,6 +2345,13 @@ Vvveb.Gui = {
 		} catch (error) {
 			console.log('error', error);
 		}
+	},
+
+	viewport : function () {
+		document.getElementById("canvas").setAttribute("class", this.dataset.view);
+		document.getElementById("iframe1").removeAttribute("style");
+		document.querySelector(".responsive-btns .active").classList.remove("active");
+		if (this.dataset.view) this.classList.add("active");
 	},
 	
 	toggleEditor : function () {
@@ -2455,7 +2462,6 @@ Vvveb.Gui = {
 	},
 //layout
 	togglePanel: function (panel, cssVar) {
-		console.log("HI FROM TOGGLE PANEL");
 		var panel = $(panel);
 		var body = $("body");
 		var prevValue = body.css(cssVar);
@@ -2867,7 +2873,6 @@ Vvveb.SectionList = {
 	allowedComponents: {},
 	
 	init: function(allowedComponents = {}) {
-		console.log("At section: ", section);
 
 		this.allowedComponents = allowedComponents;
 		
@@ -3042,7 +3047,6 @@ Vvveb.SectionList = {
 	},
 
 	loadComponents: function(sectionListItem, section, allowedComponents = {}) {
-
 		var tree = [];
 		getNodeTree(section, tree, allowedComponents);
 		
