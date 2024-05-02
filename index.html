@@ -69,19 +69,17 @@
 					
 								
 					<div class="btn-group me-3 float-end" role="group">
-					  <button class="btn btn-primary btn-icon" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="saveAjax" data-vvveb-url="save.php" data-v-vvveb-shortcut="ctrl+e">
-
-						<span class="loading d-none">
-						<i class="la la-save"></i>
-						  <span class="spinner-border spinner-border-sm align-middle" role="status" aria-hidden="true">
-						  </span>
-						  <span>Saving </span> ... </span>
-
-						<span class="button-text">
-						  <i class="la la-cart-arrow-down"></i> <span>Find Templates</span>
-						</span>	
-
-					  </button>
+						<button class="btn btn-primary btn-icon" title="Go to Marketplace" id="save-btn" onclick="window.open('https://template-marketplace.onrender.com/template_marketplace/', '_blank');">
+							<span class="loading d-none">
+								<i class="la la-save"></i>
+								<span class="spinner-border spinner-border-sm align-middle" role="status" aria-hidden="true"></span>
+								<span>Saving </span> ...
+							</span>
+						
+							<span class="button-text">
+								<i class="la la-cart-arrow-down"></i> <span>Find Templates</span>
+							</span>	
+						</button>
 					</div>	
 					<style>
 						#login {
@@ -97,7 +95,7 @@
 }
 					</style>
 					<div class="btn-group me-3 float-end" role="group" id="login">
-						<button class="btn btn-light" id="loginButton">Log In</button>
+						<button class="btn btn-light" id="loginButton" style="color: rgb(145, 142, 142);">Log In</button>
 					</div>
 					<script type="module">
 						// Import the functions you need from the SDKs you need
@@ -2267,7 +2265,6 @@ $(function() {
 	
 	let firstPage = Object.keys(pages)[0];
 	Vvveb.Builder.init(pages[firstPage]["url"], function() {
-		//load code after page is loaded here
 	});
 
 	Vvveb.Gui.init();
@@ -2278,6 +2275,7 @@ $(function() {
 	Vvveb.FileManager.addPages(pages);
 	Vvveb.FileManager.loadPage(pages[firstPage]["name"]);
 	Vvveb.Breadcrumb.init(); 
+	console.log("Vvveb.Sections 3", Vvveb.Sections);
 
 	//if url has #no-right-panel set one panel demo
 	if (window.location.hash.indexOf("no-right-panel") != -1) {

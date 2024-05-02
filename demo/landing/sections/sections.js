@@ -1,5 +1,5 @@
 Vvveb.Sections.add("hero/hero-1", {
-    name: "Hero 1",
+    name: "Template 1",
     image: Vvveb.themeBaseUrl + "/screenshots/hero/hero-1-thumb.jpeg",
     html: `<header class="hero-1" title="hero-1">
 
@@ -37,8 +37,8 @@ Vvveb.Sections.add("hero/hero-1", {
 
 
 </header>`
-});Vvveb.Sections.add("hero/hero-2", {
-    name: "Hero 2",
+}); Vvveb.Sections.add("hero/hero-2", {
+    name: "Template 2",
     image: Vvveb.themeBaseUrl + "/screenshots/hero/hero-2-thumb.jpeg",
     html: `<header class="hero-2 overlay" title="hero-2">
 
@@ -83,7 +83,7 @@ Vvveb.Sections.add("hero/hero-1", {
 
 </header>`
 });Vvveb.Sections.add("hero/hero-3", {
-    name: "Hero 3",
+    name: "Template 3",
     image: Vvveb.themeBaseUrl + "/screenshots/hero/hero-3-thumb.jpeg",
     html: `<header class="hero-3" title="hero-3">
 
@@ -138,7 +138,7 @@ Vvveb.Sections.add("hero/hero-1", {
 
 </header>`
 });Vvveb.Sections.add("hero/hero-4", {
-    name: "Hero 4",
+    name: "Template 4",
     image: Vvveb.themeBaseUrl + "/screenshots/hero/hero-4-thumb.jpeg",
     html: `<header class="hero-4 overlay" title="hero-4">
 
@@ -176,7 +176,7 @@ Vvveb.Sections.add("hero/hero-1", {
   </div>
 </header>`
 });Vvveb.Sections.add("hero/hero-5", {
-    name: "Hero 5",
+    name: "Template 5",
     image: Vvveb.themeBaseUrl + "/screenshots/hero/hero-5-thumb.jpeg",
     html: `<header class="hero-5 pt-5 pb-5 mt-0 align-items-center d-flex overlay" style="min-height: 100vh; background-size: cover; background-image: url('img/demo/hero-3.jpg');" title="hero-5">
 
@@ -221,7 +221,8 @@ Vvveb.Sections.add("hero/hero-1", {
   </div>
 
 </header>`
-}); Vvveb.SectionsGroup["Template"] = ["hero/hero-1","hero/hero-2","hero/hero-3","hero/hero-4","hero/hero-5"];
+}); 
+Vvveb.SectionsGroup["Template"] = ["hero/hero-1","hero/hero-2","hero/hero-3","hero/hero-4","hero/hero-5"];
 
 Vvveb.Sections.add("features/features-1", {
     name: "Features 1",
@@ -6565,3 +6566,5 @@ Vvveb.Sections.add("testimonials/testimonials-1", {
 // </section>`
 });
 	Vvveb.SectionsGroup["Testimonials"] = ["testimonials/testimonials-1","testimonials/testimonials-2","testimonials/testimonials-3"];
+
+  console.log("Vvveb.Sections", Vvveb.Sections);
