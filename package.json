@@ -5,7 +5,7 @@
   "author": "Ziadin Givan",
   "license": "Apache-2.0",
   "homepage": "https://www.vvveb.com/vvvebjs/editor.html",
-  "main": "libs/builder/builder.js",
+  "main": "components/builder/builder.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/givanz/VvvebJs.git"
