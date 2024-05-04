@@ -1,20 +1,13 @@
-name: End-to-end tests
+name: Cypress Tests
 on: [push]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - name: Install Dependencies
-        run: npm install --save-dev cypress
-      - name: Wait for 100 seconds
+      - name: Wait for 100 seconds for Deploy
         run: sleep 100
-      - name: Run Cypress Tests
+      - name: Cypress run
         uses: cypress-io/github-action@v2
-        with:
-          wait-on: 'https://vebly.netlify.app'
