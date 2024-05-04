@@ -11,8 +11,8 @@ jobs:
         with:
           node-version: 14
       - name: Install Dependencies
-        run: npm ci
-      - name: Wait for 20 seconds
+        run: npm install --save-dev cypress
+      - name: Wait for 100 seconds
         run: sleep 100
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v2
