@@ -2,6 +2,8 @@
 This is a ECE 49595 Open Source Senior Design Project
 Vebly is a powerful and user-friendly no-code website builder that allows you to create professional-looking websites without writing a single line of code. With its intuitive drag-and-drop interface and ability to use pre-designed templates, Vebly empowers anyone, regardless of their technical background, to build and launch a website with ease.
 
+![Screenshot 2024-05-03 at 9 22 53 PM](https://github.com/AyushPrj/vebly/assets/69159222/db52a337-82d3-446e-8d96-7e914412d942)
+
 ## Features
 ### 1. Drag-and-Drop Interface
 Vebly's drag-and-drop interface is the heart of its no-code approach. Using components from VvvebJS, users can effortlessly add, arrange, and customize various elements like text, images, videos, forms, and more by simply dragging and dropping them onto the canvas. This visual approach makes website building a breeze, even for those with no coding experience.
@@ -9,8 +11,6 @@ Vebly's drag-and-drop interface is the heart of its no-code approach. Using comp
 In today's mobile-centric world, having a responsive website is crucial. Vebly ensures that your website looks great and functions seamlessly across different devices and screen sizes. Every element you add to your website is automatically optimized for desktop, tablet, and mobile viewing, providing a consistent and engaging experience for your visitors.
 ### 3. Template Library
 Vebly offers pre-designed templates that cater to various industries and niches. Whether you're building a website for a small business, an online portfolio, or a blog, you'll find a template that perfectly aligns with your brand and requirements. These templates serve as starting points, allowing you to customize them further to match your unique style and preferences.
-
-![Screenshot 2024-05-03 at 9 22 53 PM](https://github.com/AyushPrj/vebly/assets/69159222/db52a337-82d3-446e-8d96-7e914412d942)
 
 # Developers:
 See the [Developers Wiki](https://github.com/AyushPrj/vebly/wiki/Developer-Wiki) to get more information on how to contribure to our website!
