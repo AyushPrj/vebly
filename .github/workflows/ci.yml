@@ -13,7 +13,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Wait for 20 seconds
-        run: sleep 20
+        run: sleep 100
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v2
         with:
