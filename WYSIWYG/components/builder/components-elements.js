@@ -933,8 +933,8 @@ function carouselAfterDrop(node) {
 	
 	if ($("#swiper-js", body).length == 0)
 	{
-		let swiperScript = `<script id="swiper-js" src="../../libs/swiper/swiper-bundle.min.js"></script> 
-		<link id="swiper-css" href="../../libs/swiper/swiper-bundle.min.css" rel="stylesheet">
+		let swiperScript = `<script id="swiper-js" src="../../components/swiper/swiper-bundle.min.js"></script> 
+		<link id="swiper-css" href="../../components/swiper/swiper-bundle.min.css" rel="stylesheet">
 		<script>
 		var swiper = [];
 		function initSwiper(onlyNew = false) {

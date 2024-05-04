@@ -17812,7 +17812,7 @@ https://github.com/givanz/VvvebJs
         .tree > ol li.file:hover .file-actions {
           display: block; }
       .tree > ol li.file > label {
-        background: url(../libs/builder/icons/file.svg);
+        background: url(../components/builder/icons/file.svg);
         background-position: 8px 4px;
         background-size: 21px 21px;
         background-repeat: no-repeat;
@@ -17837,7 +17837,7 @@ https://github.com/givanz/VvvebJs
           border-radius: 4px;
           --bs-btn-border-color: rgba(var(--bs-link-color-rgb), 0.15); }
     .tree > ol li.page > label {
-      background-image: url(../libs/builder/icons/panel.svg); }
+      background-image: url(../components/builder/icons/panel.svg); }
     .tree > ol li input {
       position: absolute;
       left: 0;
@@ -17849,7 +17849,7 @@ https://github.com/givanz/VvvebJs
       width: 2em;
       top: 0; }
       .tree > ol li input + ol {
-        background: url(../libs/builder/icons/arrow-right.svg) 5px 0.3rem no-repeat;
+        background: url(../components/builder/icons/arrow-right.svg) 5px 0.3rem no-repeat;
         background-size: 12px 12px;
         margin: -1.9rem 0 0 0rem;
         padding: 2rem 0 0 2rem;
@@ -17859,7 +17859,7 @@ https://github.com/givanz/VvvebJs
           margin-left: -14px !important;
           padding-left: 1px; }
     .tree > ol li label {
-      background: url(../libs/builder/icons/folder.svg) 24px 1px no-repeat;
+      background: url(../components/builder/icons/folder.svg) 24px 1px no-repeat;
       background-size: 22px 22px;
       cursor: pointer;
       display: block;
@@ -17868,7 +17868,7 @@ https://github.com/givanz/VvvebJs
       font-size: 12px;
       line-height: 28px; }
     .tree > ol li input:checked + ol {
-      background: url(../libs/builder/icons/arrow-down.svg) 5px 0.6rem no-repeat;
+      background: url(../components/builder/icons/arrow-down.svg) 5px 0.6rem no-repeat;
       background-size: 12px 12px;
       margin: -2.5em 0 0 0rem;
       padding: 2rem 0 0 2.5rem;
@@ -19163,7 +19163,7 @@ input[type="number"]:focus {
 
 /* autocomplete */
 input.autocomplete-loading {
-  background-image: url(../libs/autocomplete/autocomplete.gif);
+  background-image: url(../components/autocomplete/autocomplete.gif);
   background-position: center right;
   background-repeat: no-repeat; }
 
