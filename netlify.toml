@@ -1,3 +1,0 @@
-[template.environment]
-  NETLIFY_OAUTH_CLIENT_ID = "Your Netlify OAuth Client ID"
-  NETLIFY_OAUTH_CLIENT_SECRET= "Your Netlify OAuth Client Secret"

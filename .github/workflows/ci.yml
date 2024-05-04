@@ -1,23 +1,20 @@
-name: CI-Testing-Frontend
-
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main", "dev/web-editor" ]
-  pull_request:
-    branches: [ "main", "dev/web-editor" ]
-
-
+name: End-to-end tests
+on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Cypress tests
-        run: cypress-io/github-action@v5
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install Dependencies
+        run: npm ci
+      - name: Wait for 20 seconds
+        run: sleep 20
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v2
+        with:
+          wait-on: 'https://vebly.netlify.app'
