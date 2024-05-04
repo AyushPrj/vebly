@@ -2295,8 +2295,17 @@ Vvveb.Gui = {
 	},
 
 	deployToNetlify: async function() {
-		const netlifyToken = 'nfp_2EADXHhtLkXMYa84Ehv3eYPQUK4QDkGKc191';
-		const siteIdPrompt = prompt("Please enter your Netlify Site ID (leave blank to create a new site):");
+		const netlifyToken = prompt("Please enter your Netlify Token. (https://app.netlify.com/user/applications/personal)");
+		if (netlifyToken === null) {
+			// User pressed cancel on the first prompt, exit the function
+			return;
+		}
+
+		const siteIdPrompt = netlifyToken.trim() !== "" ? prompt("Please enter your Netlify Site ID (leave blank to create a new site):") : null;
+		if (siteIdPrompt === null && netlifyToken.trim() !== "") {
+			// User pressed cancel on the second prompt, exit the function
+			return;
+		}
 
 		let siteId = siteIdPrompt;
 		let siteURL = '';
