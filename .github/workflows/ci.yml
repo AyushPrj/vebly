@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Wait for 100 seconds for Deploy
-        run: sleep 100
+      - name: Wait for Deploy through Netlify
+        run: sleep 75
       - name: Cypress run
         uses: cypress-io/github-action@v2

@@ -35,8 +35,11 @@
   ],
   "scripts": {
     "gulp": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.yml --cache"
+    "test": "cypress run",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.yml --cache",
+    "cypress:open": "cypress open", 
+    "cypress:run": "cypress run",
+    "cypress:record": "cypress run --record --key"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
