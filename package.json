@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "axios": "^1.6.7",
+    "cypress": "^13.8.1",
     "express": "^4.18.2",
     "file-saver": "^2.0.5",
     "jquery": "^3.0",
     "jszip": "^3.10.1",
+    "next": "^14.2.3",
     "notyf": "^3.10.0",
     "zip-dir": "^2.0.0"
   },
@@ -35,10 +37,12 @@
   "scripts": {
     "gulp": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .js,.yml --cache"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "@types/jest": "^29.5.12",
+    "eslint": "^9.1.1",
+    "gulp": "^5.0.0",
     "gulp-file-include": "^2.3.0",
     "gulp-format-html": "^1.2.5",
     "gulp-sass": "^5.1.0",

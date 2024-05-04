@@ -4,7 +4,7 @@ Vvveb.Sections.add("hero/hero-1", {
     html: `<header class="hero-1" title="hero-1">
 
   <div class="heading">
-    <h1 class="display-1">Open Source CMS Reinvented</h1>
+    <h1 class="display-1" id="cypress_header">Open Source CMS Reinvented</h1>
 
     <h2 class="fs-3">Powerful and easy to use drag and drop builder for blogs, websites or ecommerce stores.</h2>
 
@@ -222,7 +222,7 @@ Vvveb.Sections.add("hero/hero-1", {
 
 </header>`
 }); 
-Vvveb.SectionsGroup["Template"] = ["hero/hero-1","hero/hero-2","hero/hero-3","hero/hero-4","hero/hero-5"];
+Vvveb.SectionsGroup["Templates"] = ["hero/hero-1","hero/hero-2","hero/hero-3","hero/hero-4","hero/hero-5"];
 
 Vvveb.Sections.add("features/features-1", {
     name: "Features 1",

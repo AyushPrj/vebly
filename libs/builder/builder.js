@@ -869,7 +869,7 @@ Vvveb.Builder = {
 					{
 						item = $(`<li data-section="${group}" data-type="${sectionType}" data-search="${section.name.toLowerCase()}">
 									<span class="name">${section.name}</span>
-									<div class="add-section-btn" title="Add section"><i class="la la-plus"></i></div>
+									<div class="add-section-btn" id="section_addition" title="Add section"><i class="la la-plus"></i></div>
 									<img class="preview" src="" loading="lazy">
 								</li>`);
 
